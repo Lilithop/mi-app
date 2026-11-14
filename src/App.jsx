@@ -3,124 +3,88 @@ import './App.css'
 
 const preguntas = [
   {
-    texto: '¿Qué es un canary token?',
+    texto: "Correo con 'Nomina_Noviembre.pdf .exe'. ¿Qué haces?",
     opciones: [
-      'Un antivirus que bloquea malware',
-      'Una trampa digital que te avisa cuando alguien la toca',
-      'Una contraseña muy larga y segura',
-      'Un tipo de firewall',
+      'Lo abro, es mi nómina',
+      'Reviso la extensión real antes de abrir',
+      'Lo reenvío a un compañero',
+      'Lo renombro y lo abro',
     ],
     correcta: 1,
     explicacion:
-      'Es un señuelo (un archivo, enlace o clave falsa) que ningún usuario legítimo tiene motivo para tocar. Si alguien lo abre o lo usa, recibes una alerta.',
+      "Windows oculta extensiones por defecto; ese segundo '.exe' es la trampa.",
   },
   {
-    texto: 'Alguien abre un documento que tiene un canary token. ¿Qué pasa?',
+    texto: "Un ZIP trae 'informe.pdf' en el listado. ¿Qué haces?",
     opciones: [
-      'Se bloquea el computador de esa persona',
-      'No pasa nada visible',
-      'Se borra el documento',
-      'Te llega una alerta con datos como la hora y la IP',
+      'Lo abro, es un PDF',
+      'No confío en ZIPs de origen desconocido',
+      'Lo abro si el nombre es claro',
+      'Lo renombro primero',
     ],
-    correcta: 3,
+    correcta: 1,
     explicacion:
-      'El documento avisa en silencio: normalmente recibes un correo o un webhook con la hora, la IP y otros detalles de quien lo abrió.',
+      'Este es un caso real (CVE-2023-38831): un ZIP puede mostrar un PDF en la lista y ejecutar otra cosa al hacer clic. Se los voy a demostrar en 15 minutos.',
   },
   {
-    texto: '¿Un canary token impide que alguien entre a tus sistemas?',
+    texto: 'Outlook muestra un link raro en la vista previa del correo. ¿Qué haces?',
     opciones: [
-      'No, detecta pero no previene',
-      'Sí, bloquea a cualquier intruso',
-      'Solo si es de pago',
-      'Sí, pero solo en redes privadas',
+      'Lo abro, es un link normal',
+      'Parece raro, lo reporto sin dar clic',
+      'Lo abro solo si conozco al remitente',
+      'Copio el link al navegador',
     ],
-    correcta: 0,
+    correcta: 1,
     explicacion:
-      'Su trabajo es avisarte de que alguien está husmeando donde no debería. Es un complemento de otras medidas de seguridad, no un reemplazo.',
+      'Ni siquiera hace falta dar clic — con que Outlook muestre la vista previa del link malicioso basta (CVE-2024-21413).',
   },
   {
-    texto: 'Pones una clave de acceso falsa (como una de AWS) como canary token. ¿Cuándo salta la alerta?',
+    texto: 'Ves un archivo .lnk con ícono de Word. ¿Qué haces?',
     opciones: [
-      'Cuando alguien ve el archivo donde está',
-      'Cada vez que reinicias el servidor',
-      'Cuando alguien intenta usarla',
-      'Cuando la clave expira',
+      'Es un acceso directo normal, lo abro',
+      'Reviso propiedades antes de abrir',
+      'Confío en el ícono, es Word',
+      'Lo ejecuto como administrador',
     ],
-    correcta: 2,
+    correcta: 1,
     explicacion:
-      'Solo mirar la clave no avisa de nada: la alerta salta cuando alguien intenta usarla. Por eso sirve para descubrir que un intruso encontró y probó credenciales robadas.',
+      'El ícono se puede falsificar. La única pista real era la extensión .lnk.',
   },
   {
-    texto: '¿Cuál de estas situaciones puede disparar un falso positivo en un canary token?',
+    texto: 'Un ZIP trae un archivo .library-ms que no reconoces. ¿Qué haces?',
     opciones: [
-      'Que cambies tu contraseña',
-      'Que reinicies el computador',
-      'Que un escáner de correo o un antivirus abra el enlace o archivo',
-      'Que el sol caliente el servidor',
-    ],
-    correcta: 2,
-    explicacion:
-      'Algunos escáneres automáticos abren enlaces y archivos para revisarlos, y eso puede activar el token. Por eso conviene mirar los detalles de cada alerta antes de asumir que hay un intruso.',
-  },
-  {
-    texto: '¿Cuál es una señal típica de un correo de phishing?',
-    opciones: [
-      'Te apura a hacer clic y a poner tu contraseña',
-      'Tiene una firma al final',
-      'Viene de un contacto y no trae enlaces',
-      'Está escrito en tu idioma',
+      'La ignoro y reporto a TI',
+      'La abro para saber qué es',
+      'La renombro a .txt',
+      'La ejecuto en modo seguro',
     ],
     correcta: 0,
     explicacion:
-      'El phishing suele crear urgencia ("tu cuenta será cerrada") y llevarte a una página falsa para robar tus datos. Ante la duda, entra al sitio escribiendo tú mismo la dirección, sin usar el enlace del mensaje.',
+      'Esta no la conocía nadie, y es la más peligrosa: roba credenciales sin que se vea nada ejecutarse (CVE-2025-24054).',
   },
   {
-    texto: '¿Para qué sirve activar la verificación en dos pasos?',
+    texto: 'PDF legítimo y firmado de una política interna conocida. ¿Qué haces?',
     opciones: [
-      'Para que la página cargue más rápido',
-      'Para no tener que recordar tu contraseña',
-      'Para recibir menos correos',
-      'Para que, aunque roben tu contraseña, haga falta un segundo paso para entrar',
-    ],
-    correcta: 3,
-    explicacion:
-      'Con ella, la contraseña sola ya no basta. Las apps de autenticación y las llaves de seguridad son más seguras que los códigos por SMS.',
-  },
-  {
-    texto: '¿Cuál es la mejor práctica con las contraseñas?',
-    opciones: [
-      'Usar la misma, fácil de recordar',
-      'Cambiarla cada semana por una parecida',
-      'Anotarla en un archivo llamado contraseñas.txt',
-      'Una larga y única por cuenta, guardada en un gestor de contraseñas',
-    ],
-    correcta: 3,
-    explicacion:
-      'Si reutilizas una contraseña y una web la filtra, los atacantes la prueban en tus otras cuentas. Un gestor genera y recuerda claves largas y distintas por ti.',
-  },
-  {
-    texto: 'Subiste por accidente una clave de API a un repositorio público. ¿Qué haces primero?',
-    opciones: [
-      'Borrar el archivo y listo',
-      'Esperar a ver si alguien la usa',
-      'Revocarla de inmediato y crear una nueva',
-      'Hacer el repositorio privado y no hacer nada más',
-    ],
-    correcta: 2,
-    explicacion:
-      'Aunque borres el archivo, la clave sigue en el historial de Git, y hay bots que rastrean repos públicos en minutos. Hay que tratarla como filtrada: revócala y genera otra.',
-  },
-  {
-    texto: 'Un sitio muestra el candado de HTTPS. ¿Qué significa?',
-    opciones: [
-      'La conexión viaja cifrada, pero el sitio igual podría ser falso',
-      'El sitio es 100% confiable',
-      'Nadie puede espiar tu dispositivo',
-      'El sitio no tiene anuncios',
+      'Lo abro con confianza',
+      'Lo reporto por si acaso',
+      'Pido verificación igual',
+      'No lo abro nunca',
     ],
     correcta: 0,
     explicacion:
-      'HTTPS protege los datos en el camino entre tu navegador y el sitio, pero no garantiza que el sitio sea honesto: las páginas de phishing también pueden tener candado. Revisa siempre la dirección.',
+      'TRAMPA INVERSA: el punto no era desconfiar, era confiar correctamente. Reportar todo satura a TI y nos resta como primera línea de defensa.',
+  },
+  {
+    texto: "Volante con QR: 'Escanea para ver tu recibo de nómina'. ¿Qué haces?",
+    opciones: [
+      'Lo escaneo, es de la empresa',
+      'Reporto el volante a seguridad',
+      'Verifico con RRHH antes de escanear',
+      'Lo ignoro',
+    ],
+    correcta: 1,
+    explicacion:
+      'Mismo principio fuera de la pantalla: un QR en un volante es el mismo ataque, solo que en papel. (Respuesta C también es válida).',
   },
 ]
 
@@ -165,7 +129,7 @@ export default function App() {
       <main className="fondo">
         <section className="tarjeta centro">
           <span className="etiqueta">Seguridad en internet</span>
-          <h1>Canary tokens y más</h1>
+          <h1>¿Abrirías este archivo?</h1>
           
           <button className="boton" onClick={() => setPantalla('cuestionario')}>
             Empezar
